@@ -1,0 +1,98 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-panel: var(--panel);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-danger: var(--danger);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-display: "Anton", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.15 0.012 255);
+  --foreground: oklch(0.96 0.008 255);
+  --panel: oklch(0.2 0.018 260);
+  --card: oklch(0.2 0.018 260);
+  --card-foreground: oklch(0.96 0.008 255);
+  --popover: oklch(0.2 0.018 260);
+  --popover-foreground: oklch(0.96 0.008 255);
+  --primary: oklch(0.84 0.14 175);
+  --primary-foreground: oklch(0.18 0.03 170);
+  --secondary: oklch(0.26 0.02 260);
+  --secondary-foreground: oklch(0.96 0.008 255);
+  --muted: oklch(0.26 0.02 260);
+  --muted-foreground: oklch(0.62 0.025 255);
+  --accent: oklch(0.28 0.03 220);
+  --accent-foreground: oklch(0.96 0.008 255);
+  --destructive: oklch(0.7 0.17 15);
+  --destructive-foreground: oklch(0.98 0 0);
+  --danger: oklch(0.72 0.17 15);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.84 0.14 175);
+  --chart-1: oklch(0.84 0.14 175);
+  --chart-2: oklch(0.75 0.13 235);
+  --chart-3: oklch(0.83 0.15 80);
+  --chart-4: oklch(0.72 0.17 15);
+  --chart-5: oklch(0.8 0.12 135);
+  --glow-bg: radial-gradient(60% 50% at 18% 12%, oklch(0.32 0.06 230) 0%, transparent 55%),
+    radial-gradient(45% 45% at 85% 75%, oklch(0.32 0.06 175) 0%, transparent 60%);
+  --stripes: repeating-linear-gradient(115deg, transparent 0 64px, oklch(1 0 0 / 3%) 64px 65px);
+  --shadow-glow: 0 0 14px var(--primary);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--panel) 60%, transparent);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+@utility bg-glow { background: var(--glow-bg); }
+@utility bg-stripes { background: var(--stripes); }
+
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes sheen { 0% { transform: translateX(-30%); } 100% { transform: translateX(130%); } }
+@utility rise { animation: rise .5s cubic-bezier(.32,.72,0,1) both; }
+@utility sheen { animation: sheen 2.6s cubic-bezier(.32,.72,0,1) infinite; }
